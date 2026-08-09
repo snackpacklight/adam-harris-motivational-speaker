@@ -23,6 +23,7 @@
 *.pem
 .sites-*.out
 .sites-*.err
+netlify-dist/
 
 # debug
 npm-debug.log*
