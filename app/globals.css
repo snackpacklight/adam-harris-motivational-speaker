@@ -18,6 +18,58 @@ h1,h2,h3,p,figure{margin:0}h1,h2,h3{line-height:1.04;letter-spacing:-.052em}h1{f
 .about,.booking{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8vw}.about{background:var(--ink);color:white}.about img{width:100%;height:clamp(23rem,38vw,36rem);object-fit:cover;object-position:50% 22%}.about h2 em{display:block}.about div>p:not(.overline){color:#ded6d8;margin-top:1.3rem;max-width:36rem}
 .booking{background:#8e112e;color:white}.booking .overline{color:#ffdae4}.booking .call{display:block;width:fit-content;font-size:clamp(2rem,3.8vw,4rem);line-height:1.25;margin:1rem 0}.call:hover{text-decoration:underline}.booking .under{font-size:.95rem}
 footer{padding-block:1.7rem}footer a:hover{text-decoration:underline}
-@media(prefers-reduced-motion:no-preference){@keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes portrait{from{transform:scale(1.045)}to{transform:scale(1)}}.hero-copy h1{animation:enter .65s ease-out both}.hero-copy .actions{animation:enter .65s .12s ease-out both}.cover img{animation:portrait 1.8s ease-out both}.button,.nav-book{transition:background .2s}}
+.formats,.audiences ul,.experience-list {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.formats {
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+  gap:.75rem 2rem; padding:1.55rem 5vw; background:#b60829; color:white;
+  font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+}
+.formats li+li::before {content:""; display:inline-block; vertical-align:middle; width:4px; height:4px; border-radius:50%; background:#ffadbb; margin-right:2rem}
+.message,.experience {background:#f3efe8}
+.message {display:grid; grid-template-columns:minmax(12rem,1fr) minmax(0,3fr); gap:4vw}
+.message>.overline {margin-top:.65rem}
+.message h2,.experience h3,.audiences li {font-family:var(--font-cormorant),Georgia,serif; font-weight:600}
+.message h2 {max-width:25ch; font-size:clamp(2.7rem,4.7vw,5.4rem); line-height:1.04}
+.message-body {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4vw; margin-top:2.5rem; padding-top:1.8rem; border-top:1px solid #c8beb3}
+.message-body p,.experience-list p {color:#544d49; max-width:47ch}
+.audiences {display:flex; align-items:center; gap:4vw; padding:1.6rem 6vw; background:white; border-block:1px solid #e2dcd4}
+.audiences p {font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase}
+.audiences ul {flex:1; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.4rem 1.5rem}
+.audiences li {font-size:clamp(1.25rem,1.7vw,2rem)}
+.experience-list {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-block:1px solid #c8beb3; margin-top:2.4rem}
+.experience-list li {padding:2rem clamp(1rem,2.7vw,3rem) 2.2rem}
+.experience-list li:first-child {padding-left:0}
+.experience-list li+li {border-left:1px solid #c8beb3}
+.experience-list span {color:var(--red); font-size:.8rem; font-weight:700; letter-spacing:.12em}
+.experience-list h3 {font-size:clamp(2.4rem,3.5vw,4.5rem); margin:2.2rem 0 .8rem}
+@media(prefers-reduced-motion:no-preference) {
+  @keyframes settle {from{opacity:.4;transform:translateY(.85rem)}to{opacity:1;transform:none}}
+  @keyframes draw-line {from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .hero-copy h1 {animation:settle 1.8s ease-out both}
+  .hero-copy .intro,.hero-copy .actions {animation:settle 2s .12s ease-out both}
+  .cover::after {transform-origin:left; animation:draw-line 3.6s ease-out both}
+  .button,.nav-book {transition:background .6s}
+  @supports (animation-timeline:view()) {
+    .message h2,.experience-list h3 {animation:settle linear both; animation-timeline:view(); animation-range:entry 0% cover 35%}
+  }
+}
 @media(max-width:720px){header,footer{padding:1rem 5vw;gap:.5rem}.identity{font-size:.9rem;gap:.5rem}.nav-book{font-size:.85rem;padding:.55rem .65rem}nav{display:none}.hero,.about,.booking,.cards{grid-template-columns:1fr}.hero-copy{padding:2.8rem 6vw 2rem}.hero h1{font-size:clamp(2.9rem,10vw,4.7rem)}.cover{min-height:0;aspect-ratio:1.85}.cover img{object-position:50% 35%}.actions{gap:1.2rem;flex-wrap:wrap}.cards{gap:1rem;margin-top:2rem}.about,.booking{gap:2rem}.about img{height:min(25rem,100vw)}footer{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Keep the top of the original frame, including the space above Adam's hair. */
+.cover img {object-position:center top}
+@media(max-width:720px) {
+  .cover {aspect-ratio:1.32}
+  .formats {display:grid; grid-template-columns:1fr 1fr; text-align:center; padding:1.15rem 5vw; gap:.8rem; font-size:.7rem}
+  .formats li+li::before {display:none}
+  .message,.message-body,.experience-list {grid-template-columns:1fr}
+  .message-body {gap:1.2rem}
+  .audiences {align-items:flex-start; flex-direction:column; gap:.6rem}
+  .audiences ul {justify-content:flex-start}
+  .experience-list li,.experience-list li:first-child {padding:1.6rem 0}
+  .experience-list li+li {border-left:0; border-top:1px solid #c8beb3}
+  .experience-list h3 {margin:.7rem 0}
+}
