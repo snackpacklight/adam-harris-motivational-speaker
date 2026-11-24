@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile, copyFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile, copyFile, cp } from "node:fs/promises";
 import { resolve } from "node:path";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -49,6 +49,7 @@ await Promise.all([
   writeFile(resolve(output, "styles.css"), staticCss, "utf8"),
   writeFile(resolve(output, "robots.txt"), "User-agent: *\nAllow: /\n", "utf8"),
   copyFile(resolve(root, "public", "og.png"), resolve(output, "og.png")),
+  cp(resolve(root, "public", "portraits"), resolve(output, "portraits"), { recursive: true }),
 ]);
 
 console.log(`Netlify site built at ${output}`);
